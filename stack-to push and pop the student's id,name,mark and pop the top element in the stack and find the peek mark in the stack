@@ -1,0 +1,73 @@
+#include<iostream>
+using namespace std;
+class stacks
+{
+public:
+    int id,mark;
+    string name;
+    stacks*next;
+    stacks*top=NULL;
+
+
+void push(int id,int mark,string name)
+{
+    stacks*temp=new stacks();
+    temp->id=id;
+    temp->mark=mark;
+    temp->name=name;
+    temp->next=top;
+    top=temp;
+}
+void pop()
+{
+    stacks*temp;
+    if(top==NULL)
+    {
+        cout<<"stack is empty"<<endl;
+    }
+    temp=top;
+    top=top->next;
+    delete temp;
+
+}
+void peek()
+{
+    stacks*temp=top;
+    int high=temp->mark;
+    while(temp!=NULL)
+    {
+        if(temp->mark > high)
+        {
+            high=temp->mark;
+        }
+        temp=temp->next;
+    }
+
+    cout<<"peek mark is:"<<high<<endl;
+}
+void display()
+{
+    stacks*temp=top;
+    while(temp!=NULL)
+    {
+        cout<<"id:"<<temp->id<<","<<"mark:"<<temp->mark<<","<<"name:"<<temp->name<<endl;
+        temp=temp->next;
+    }
+}};
+int main()
+{
+    stacks s;
+    s.push(1,100,"sathana");
+    s.push(2,99,"varsh");
+    s.push(3,98,"varshini");
+    s.push(4,97,"mrini");
+    s.push(5,96,"joo");
+    s.push(6,95,"joy");
+    cout<<"original list:"<<endl;
+    s.display();
+    cout<<"after deleting:"<<endl;
+    s.pop();
+    s.display();
+    s.peek();
+    return 0;
+}
